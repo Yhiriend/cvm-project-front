@@ -1,0 +1,62 @@
+.tabs {
+    display: flex;
+    position: relative;
+    background-color: white;
+    padding: 5px;
+    border-radius: 99px;
+}
+
+.tabs * {
+    z-index: 2;
+}
+
+input[type='radio'] {
+    display: none;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100px;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    z-index: 10;
+}
+
+input[type='radio']:checked+label {
+    color: white;
+    z-index: 20;
+}
+
+input[id='radio-store']:checked ~ .glider {
+    transform: translateX(0);
+}
+
+input[id='radio-service']:checked ~ .glider {
+    transform: translateX(100%);
+}
+
+/*.glider {
+    position: absolute;
+    display: flex;
+    height: 30px;
+    width: 100px;
+    background-color: red;
+    color: white;
+    z-index: 1;
+    border-radius: 99px;
+    transition: .25 ease-out;
+}*/
+
+.shopping-icon {
+    transform: scaleX(-1);
+    color: white;
+}
+
+.button-disabled {
+    background-color: #ccc; /* Puedes ajustar el color gris según tus preferencias */
+    cursor: not-allowed;
+  }

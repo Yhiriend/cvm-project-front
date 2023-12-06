@@ -1,0 +1,74 @@
+<form class="p-10" [formGroup]="registerForm" (submit)="onSubmit($event)">
+  <div class="my-4">
+    <app-input
+      inputName="name"
+      inputId="name"
+      [control]="registerForm.controls['name']"
+      inputRequired="required"
+      inputLabel="Primer nombre"
+    ></app-input>
+  </div>
+  <div class="my-4">
+    <app-input
+      inputName="surname"
+      inputId="surname"
+      [control]="registerForm.controls['surname']"
+      inputRequired="required"
+      inputLabel="Primer apellido"
+    ></app-input>
+  </div>
+  <div class="my-4">
+    <app-input
+      inputName="email"
+      inputId="email"
+      [control]="registerForm.controls['email']"
+      inputRequired="required"
+      inputLabel="Correo electrónico"
+    ></app-input>
+  </div>
+  <div class="mt-4 mb-10">
+    <app-input
+      inputName="password"
+      inputId="password"
+      [control]="registerForm.controls['password']"
+      inputRequired="required"
+      inputType="password"
+      inputLabel="Contraseña"
+    ></app-input>
+  </div>
+  <div class="relative w-full">
+    @if (msg) {
+    <p class="absolute -top-8 text-center text-red-600 w-full font-maxwellRegular tracking-wider">{{msg}}</p>
+    }
+  </div>
+  <div class="w-full my-4">
+    <app-button
+      buttonColor="secondary"
+      buttonType="submit"
+      buttonText="Registrarte"
+    ></app-button>
+  </div>
+
+  <div class="w-full mb-4 px-4">
+    <p class="text-sm font-maxwellRegular leading-4 tracking-wider">
+      Al registrarte, aceptas los
+      <a href="#" class="text-blue-500 hover:underline">Términos de servicio</a>
+      y la
+      <a href="#" class="text-blue-500 hover:underline"
+        >Política de privacidad</a
+      >, incluida la política de
+      <a href="#" class="text-blue-500 hover:underline">Uso de Cookies</a>.
+    </p>
+  </div>
+
+  <hr class="mb-2" />
+  <p class="text-center font-maxwellRegular tracking-wider">
+    ¿ Ya tienes una cuenta ?
+  </p>
+  <div class="w-full my-4">
+    <app-button
+      (onClick)="onLoginClick()"
+      buttonText="Iniciar sesión"
+    ></app-button>
+  </div>
+</form>

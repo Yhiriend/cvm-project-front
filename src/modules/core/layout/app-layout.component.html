@@ -1,0 +1,8 @@
+<app-header (onSearchClickEmit)="handleSearchFilterClick($event)"></app-header>
+@if (isSearching) {
+  <app-search></app-search>
+}@else {
+  <app-home></app-home>
+}
+
+<app-footer></app-footer>

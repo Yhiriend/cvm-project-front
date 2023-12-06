@@ -1,0 +1,167 @@
+<div
+  class="relative px-24 w-full h-[120px] bg-customBlack flex justify-evenly items-center"
+>
+  <div class="flex items-center">
+    <div class="h-fit">
+      <img
+        src="../../../assets/images/airconditionerIcon.png"
+        alt=""
+        width="60px"
+      />
+    </div>
+    <div class="ml-4">
+      <h1 class="text-white font-maxwellBold text-5xl tracking-wider">CVM</h1>
+    </div>
+  </div>
+
+  <div id="searchBar" class="relative mx-auto text-gray-600">
+    <form (ngSubmit)="onSearchClick()">
+      <input
+        [(ngModel)]="searchTerm"
+        class="bg-white font-maxwellRegular w-96 h-10 px-5 pr-16 rounded-[40px] text-lg tracking-wider focus:outline-none"
+        type="search"
+        name="search"
+        placeholder="Busca tu marca favorita (ej: SAMSUNG)"
+      />
+      <button
+        type="submit"
+        class="absolute flex justify-center items-center rounded-full right-0 top-0 w-[40px] mr-1 h-full hover:bg-gray-200"
+      >
+        <svg
+          class="text-gray-600 h-4 w-4 fill-current"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          version="1.1"
+          id="Capa_1"
+          x="0px"
+          y="0px"
+          viewBox="0 0 56.966 56.966"
+          style="enable-background: new 0 0 56.966 56.966"
+          xml:space="preserve"
+          width="512px"
+          height="512px"
+        >
+          <path
+            d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+          />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="font-maxwellRegular text-lg tracking-wider text-gray-500">
+    <div class="tabs">
+      <input type="radio" id="radio-store" name="tabs" checked />
+      <label class="tab" for="radio-store">tienda</label>
+
+      <input type="radio" id="radio-service" name="tabs" />
+      <label class="tab" for="radio-service">servicio</label>
+      <span
+        class="glider absolute flex h-[30px] w-[100px] bg-customGreen text-white rounded-[40px] transition-all z-0"
+      ></span>
+    </div>
+  </div>
+</div>
+<div
+  class="w-full h-[70px] border-t-2 border-black/30 bg-customBlack flex justify-between px-24 items-center"
+>
+  <div class="flex justify-center items-center">
+    <div class="mr-4">
+      <h1 class="text-white font-maxwellRegular text-lg tracking-wider">
+        Filtros:
+      </h1>
+    </div>
+    <div class="mr-4 w-40">
+      <select
+        [(ngModel)]="usageTimeSelectorFilter"
+        id=""
+        name=""
+        class="rounded-[40px] h-[30px] px-4 border-none font-maxwellRegular tracking-wider text-lg"
+        [required]="false"
+      >
+        <option value="" disabled selected>tiempo de uso</option>
+        <option value="0">nuevo</option>
+        <option value="1">menos de 1 año</option>
+        <option value="2">entre 1 y 2 años</option>
+        <option value="3">entre 2 y 3 años</option>
+        <option value="4">mayor a 3 años</option>
+      </select>
+    </div>
+    <div class="w-fit">
+      <select
+        [(ngModel)]="priceSelectorFilter"
+        id=""
+        name=""
+        class="rounded-[40px] h-[30px] px-4 border-none font-maxwellRegular tracking-wider text-lg"
+        [required]="false"
+      >
+        <option value="" disabled selected>precio</option>
+        <option value="0">menor a $800.000</option>
+        <option value="1">entre $800.000 y $1.000.000</option>
+        <option value="2">entre $1.000.000 y $1.500.000</option>
+        <option value="3">entre $1.500.000 y $2.000.000</option>
+        <option value="4">mayor a $2.000.000</option>
+      </select>
+    </div>
+    <div class="ml-2 relative">
+      <button
+        [disabled]="!isSearching"
+        [ngClass]="{ 'button-disabled': !isSearching }"
+        class="rounded-[40px] bg-customBlue px-4 h-[30px] text-white font-maxwellRegular tracking-wider text-lg hover:bg-blue-500"
+        (click)="onApplyFiltersClick()"
+      >
+        aplicar filtros
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center">
+    @if (userLoggedIn) {
+    <div id="logged" class="mr-6 flex items-center z-10">
+      <app-dropdown-button buttonText="{{ userLoggedIn.name }}">
+        <a
+          class="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
+          role="menuitem"
+        >
+          <h2>{{ userLoggedIn.email }}</h2>
+        </a>
+        <a (click)="onLogoutClick()"
+          class="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
+          role="menuitem"
+        >
+          <h2>cerrar sesión</h2>
+        </a>
+      </app-dropdown-button>
+      <mat-icon class="shopping-icon ml-4">person</mat-icon>
+    </div>
+    }@else {
+    <div id="register" class="mr-6">
+      <h1
+        class="hover:cursor-pointer hover:underline text-white font-maxwellRegular text-lg tracking-wider"
+        (click)="onCreateAccountClick()"
+      >
+        crea tu cuenta
+      </h1>
+    </div>
+    <div id="login">
+      <h1
+        class="hover:cursor-pointer hover:underline mr-6 text-white font-maxwellRegular text-lg tracking-wider"
+        (click)="onLoginClick()"
+      >
+        ingresa
+      </h1>
+    </div>
+    }
+
+    <button (click)="onCartClick()" class="relative rounded-full p-2 flex items-center hover:bg-gray-50/10">
+      <mat-icon class="shopping-icon">shopping_cart</mat-icon>
+      @if (cartSize>0) {
+      <div
+        class="absolute opacity-70 -top-1 -right-1 h-4 w-4 rounded-full text-white flex justify-center items-center text-xs font-mono bg-customBlue"
+      >
+        {{ cartSize }}
+      </div>
+      }
+    </button>
+  </div>
+</div>

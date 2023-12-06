@@ -1,0 +1,39 @@
+<form class="p-10" [formGroup]="loginForm" (submit)="onSubmit($event)">
+    <h1 class="text-center font-maxwellRegular text-gray-400 text-3xl">Inicio de sesión</h1>
+    <div class="h-4"></div>
+  <div class="my-4">
+    <app-input
+      inputName="email"
+      inputId="email"
+      [control]="loginForm.controls['email']"
+      inputRequired="required"
+      inputLabel="Correo electrónico"
+    ></app-input>
+  </div>
+  <div class="mt-4 mb-10">
+    <app-input
+      inputName="password"
+      inputId="password"
+      [control]="loginForm.controls['password']"
+      inputRequired="required"
+      inputType="password"
+      inputLabel="Contraseña"
+    ></app-input>
+  </div>
+  <div class="relative w-full">
+    @if (msg) {
+    <p class="absolute -top-8 text-center text-red-600 w-full font-maxwellRegular tracking-wider">{{msg}}</p>
+    }
+  </div>
+  <div class="w-full my-4">
+    <app-button buttonColor="primary" buttonType="submit" buttonText="Iniciar sesión"></app-button>
+  </div>
+
+  <hr class="mb-2" />
+  <p class="text-center font-maxwellRegular tracking-wider">
+    ¿ No tienes una cuenta aún ?
+  </p>
+  <div class="w-full my-4">
+    <app-button buttonColor="secondary" (onClick)="onRegisterClick()" buttonText="Crear cuenta"></app-button>
+  </div>
+</form>

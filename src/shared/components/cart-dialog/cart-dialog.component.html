@@ -1,0 +1,82 @@
+<div
+  class="relative w-full h-full bg-gray-300 p-2 font-maxwellRegular tracking-wider text-gray-400 overflow-y-auto"
+>
+  @if (products && products.length>0) {
+  <div
+    *ngFor="let product of products"
+    class="relative h-40 w-full mb-2 bg-white rounded-lg flex justify-between overflow-hidden"
+  >
+    <div
+      class="relative w-[200px] min-w-[200px] max-w-[200px] h-full bg-gray-100"
+    >
+      <img [src]="product.image" alt="" />
+      <h1 class="font-mono text-green-600 absolute bottom-2 w-full text-center">
+        ${{ product.price.toLocaleString() }}
+        <span class="text-sm text-gray-500">COP</span>
+      </h1>
+    </div>
+    <div class="pl-2 pt-3 w-[120px] min-w-[120px] max-w-[120px] h-full">
+      <p>Marca</p>
+      <h1 class="font-maxwellBold text-customBlack">{{ product.brand }}</h1>
+      <p>Tecnología</p>
+      <h1 class="font-maxwellBold text-customBlack">{{ product.tech }}</h1>
+    </div>
+    <div
+      class="border-l-2 pt-3 border-gray-100 pl-2 h-full w-[100px] min-w-[100px] max-w-[100px]"
+    >
+      <p>Tipo</p>
+      <h1 class="font-maxwellBold text-customBlack">{{ product.type }}</h1>
+      <p>Voltaje</p>
+      <h1 class="font-maxwellBold text-customBlack">{{ product.voltage }}v</h1>
+    </div>
+    <div class="h-full w-[310px] pl-2 pt-3 border-l-2 border-gray-100">
+      <p>Tiempo de uso</p>
+      <h1 class="font-maxwellBold text-customBlack">{{ product.usageTime }}</h1>
+      <p>Descripción:</p>
+      <h1 class="text-customBlack leading-4">
+        Esta vaina está bien rara pero aqui debo colocar una descripcion que par
+        que se vea algo aqui en este campo
+      </h1>
+    </div>
+      <button (click)="onDeleteClick(product.id)" class="absolute top-0 right-0 w-10 h-10 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-0 pl-3 pb-3 text-gray-400 bg-gray-200 hover:bg-gray-300">
+      <img id="icon-delete" src="../../../assets/images/delete-svgrepo-com.svg" width="20" alt="">
+    </button>
+
+  </div>
+  }@else {
+  <div class="w-full h-[300px] flex flex-col justify-center items-center">
+    <img
+      src="../../../assets/images/cart-svgrepo-com.svg"
+      width="200"
+      class="opacity-20"
+      alt=""
+    />
+    <h1 class="font-bold">Wow... tu carrito está vacio!</h1>
+    <p>Vamos, anímate a comprar aunque sea un solo aire acondicionado 😜</p>
+  </div>
+  }
+
+  <div
+    class="w-full h-20 bg-customBlack rounded-lg flex items-center justify-evenly px-4"
+  >
+    <h1 class="text-center text-white">
+      Aires Acondicionados ( {{ products.length }} )
+    </h1>
+    <h1 class="text-center text-white">
+      Total a pagar:
+      <span class="font-mono">${{ totalToPay.toLocaleString() }}</span> COP
+    </h1>
+    <button
+    (click)="onBuyCart()"
+      class="bg-customBlue h-10 px-4 rounded-2xl hover:bg-blue-600 text-white ml-3"
+    >
+      Continuar con la compra
+    </button>
+    <button
+      (click)="onCloseModal()"
+      class="border-customBlue border-2 h-10 px-4 rounded-2xl text-customBlue hover:border-blue-600 hover:text-blue-600 ml-3"
+    >
+      Cerrar ventana
+    </button>
+  </div>
+</div>

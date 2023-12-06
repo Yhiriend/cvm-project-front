@@ -1,0 +1,28 @@
+@switch (buttonColor) { @case ('primary') {
+<button
+[disabled]="isLoading"
+[attr.type]="buttonType ? buttonType : 'button'"
+(click)="emitOnclick()"
+  class="bg-customGreen hover:bg-green-600 text-white font-maxwell text-xl tracking-wider font-bold py-2 px-4 rounded-full h-[52px] w-full"
+>
+  {{ buttonText }}
+</button>
+} @case ('secondary') {
+<button
+[disabled]="isLoading"
+[attr.type]="buttonType ? buttonType : 'button'"
+(click)="emitOnclick()"
+  class="bg-customBlue hover:bg-blue-400 text-white font-maxwell text-xl tracking-wider font-bold py-2 px-4 rounded-full h-[52px] w-full"
+>
+  {{ buttonText }}
+</button>
+}@default {
+<button
+[disabled]="isLoading"
+[attr.type]="buttonType ? buttonType : 'button'"
+(click)="emitOnclick()"
+  class="bg-transparent hover:bg-gray-200 border-customBlue border-[1px] text-customBlue font-maxwell text-xl tracking-wider font-bold py-2 px-4 rounded-full h-[52px] w-full"
+>
+  {{ buttonText }}
+</button>
+}}

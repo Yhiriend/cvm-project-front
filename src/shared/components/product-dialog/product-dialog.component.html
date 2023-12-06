@@ -1,0 +1,80 @@
+<div
+  class="relative w-full h-full bg-white flex justify-between items-center font-maxwellRegular tracking-wider text-customBlack"
+>
+  <div class="p-6 w-1/2 bg-gray-400 h-full flex flex-col justify-center items-center">
+    <div class="h-1/2">
+        <img [src]="imageUrl" width="300" alt="" />
+    </div>
+    <p class="leading-4 mt-2">
+      Descripción: Esta es una descripcion provicional hasta que se solucione lo demas en la
+      base de datos, guiño guiño
+    </p>
+  </div>
+  <hr class="h-full bg-gray-300/80 w-1"/>
+  <div class="h-full w-1/2 p-6 flex flex-col justify-center">
+    <div class="w-full">
+      <div class="flex w-full justify-between">
+        <div class="w-1/2">
+          <p class="text-gray-500">Marca</p>
+          <h1 class="font-maxwellBold">{{ data.product.brand }}</h1>
+        </div>
+        <div class="w-1/2">
+          <p class="text-gray-500">Tecnología</p>
+          <h1 class="font-maxwellBold">{{ data.product.tech }}</h1>
+        </div>
+      </div>
+      <div class="flex w-full justify-between text-left">
+        <div class="w-1/2">
+          <p class="text-gray-500">Tipo</p>
+          <h1 class="font-maxwellBold">{{ data.product.type }}</h1>
+        </div>
+        <div class="w-1/2">
+          <p class="text-gray-500">Voltaje</p>
+          <h1 class="font-maxwellBold">{{ data.product.voltage }}v</h1>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <p class="text-gray-500">Estado</p>
+      <div class="flex items-center">
+        <div class="flex mr-4">
+          <img
+            class="icon-star"
+            *ngFor="let i of range(1, 5)"
+            [ngClass]="{ 'true-state': i <= data.product.state }"
+            src="../../../assets/images/iconestrella.png"
+            alt=""
+          />
+        </div>
+
+        <p class="text-gray-500 text-right">
+          ( {{ getProductState(data.product) }} )
+        </p>
+      </div>
+    </div>
+    <div class="mt-4">
+      <p class="text-gray-500">Precio</p>
+      <h2 class="font-mono font-bold text-2xl tracking-normal text-customGreen">
+        ${{ data.product.price.toLocaleString()
+        }}<span class="tracking-normal text-xs text-gray-500 ml-1">COP</span>
+      </h2>
+    </div>
+    <div class="relative w-full">
+      @if (msg) {
+      <p class="absolute top-0 text-left text-red-600 w-full font-maxwellRegular tracking-wider">{{msg}}</p>
+      }
+    </div>
+    <div class="w-fit h-[20px] mt-6">
+      <button
+      (click)="onAddToCart()"
+        class="bg-customGreen rounded-[40px] py-2 px-4 text-white border-none focus:border-none outline-none hover:bg-green-600"
+      >
+        + Agregar al carrito
+      </button>
+    </div>
+  </div>
+  <div class="absolute top-0 right-0">
+    <button (click)="onCloseModal()" class="w-12 h-12 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-1 pl-2 pb-2 text-gray-400 bg-gray-200 hover:bg-gray-300 hover:text-red-400">X</button>
+
+  </div>
+</div>

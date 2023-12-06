@@ -1,0 +1,9 @@
+.icon-star {
+    height: 20px;
+    width: 20px;
+    filter: invert(47%) sepia(9%) saturate(357%) hue-rotate(160deg) brightness(93%) contrast(85%);
+}
+
+.icon-star.true-state {
+    filter: invert(79%) sepia(19%) saturate(3244%) hue-rotate(6deg) brightness(100%) contrast(101%);
+}

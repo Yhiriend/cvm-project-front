@@ -1,0 +1,109 @@
+@if (productList.length > 0) {
+<div #searchResultContainer id="product-wrapper" class="w-full bg-gray-200">
+  <div
+    class="w-full h-[100px] rounded-[20px] px-10 mb-10 bg-white flex justify-around items-center"
+  >
+    <h2 class="font-maxwellRegular tracking-wider text-customBlack text-lg">
+      📑
+      <span class="font-maxwellBold">{{ productList.length }}</span>
+      Coincidencias encontradas ( Busqueda principal )
+    </h2>
+    <div class="flex justify-center items-center">
+      <h2
+        class="font-maxwellRegular tracking-wider text-customBlack text-lg mr-2"
+      >
+        Ordenar por
+      </h2>
+      <div class="w-fit">
+        <select
+          [(ngModel)]="orderByPriceSelector"
+          (ngModelChange)="handleOrderByPriceChange($event)"
+          id=""
+          name=""
+          class="bg-white text-customBlack rounded-[40px] h-[30px] px-4 border-2 border-gray-500 font-maxwellRegular tracking-wider text-lg"
+          [required]="false"
+        >
+          <option value="" disabled selected>precio</option>
+          <option value="1"><span>precio:</span> de menor a mayor</option>
+          <option value="2"><span>precio:</span> de mayor a menor</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex justify-end items-center">
+      <h2 class="mr-4">{{ getPage(page) }}/{{ getTotalPages() }}</h2>
+      <button
+        (click)="prevPage()"
+        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-maxwellRegular py-2 px-4 rounded-l"
+      >
+        Prev
+      </button>
+      <hr class="h-full w-[1px]" />
+      <button
+        (click)="nextPage()"
+        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-maxwellRegular py-2 px-4 rounded-r"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngFor="
+      let product of productList
+        | filter : page : orderby : searchPriceFilter : searchUsageTimeFilter
+    "
+    class="product-card"
+    (click)="onCardClick(product)"
+  >
+    <div class="product-image-wrapper">
+      <div class="product-image-container">
+        <img [src]="product.image" alt="" class="product-image" />
+      </div>
+    </div>
+    <hr class="divider-card" />
+    <h1 id="product-title" class="font-maxwellRegular">
+      {{ product.brand + " + " + product.tech }}
+    </h1>
+    <div class="product-state-wrapper">
+      <div class="stars-wrapper">
+        <div class="icon-wrapper">
+          <img
+            class="icon-star"
+            *ngFor="let i of range(1, 5)"
+            [ngClass]="{ 'true-state': i <= product.state }"
+            src="../../../assets/images/iconestrella.png"
+            alt=""
+          />
+        </div>
+        <p id="state-text-wrapper" class="font-maxwellRegular">
+          {{ getProductState(product) }}
+        </p>
+      </div>
+    </div>
+    <div class="product-price-wrapper">
+      <h1 class="product-price-text">
+        ${{  product.price.toLocaleString() }}
+      </h1>
+    </div>
+  </div>
+</div>
+}@else {
+<div
+  class="w-full h-[500px] bg-gray-200 flex flex-col justify-evenly items-center"
+>
+  <img
+  class="opacity-30"
+    src="../../../assets/images/file-search-svgrepo-com.svg"
+    width="100"
+    alt=""
+  />
+  <div class="flex flex-col justify-center items-center">
+    <h1 class="font-maxwellBold text-2xl text-customBlack tracking-wider">
+      Whoops!
+    </h1>
+    <h3 class="font-maxwellRegular text-lg text-gray-500 tracking-wider">
+      No hay coincidencias para esa marca en concreto
+    </h3>
+  </div>
+</div>
+}

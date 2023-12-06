@@ -1,0 +1,42 @@
+<div class="relative">
+  <div
+    id="static-elements-container"
+    class="relative overflow-hidden w-full h-screen bg-white"
+  >
+    <div
+      id="back-circle"
+      class="absolute left-0 top-[-10vh] rounded-r-full w-[70vh] h-[120vh] bg-blue-100"
+    ></div>
+    <div
+      id="middle-circle"
+      class="absolute left-0 top-[-5vh] rounded-r-full w-[60vh] h-[110vh] bg-blue-200"
+    ></div>
+    <div
+      id="front-circle"
+      class="absolute left-[-50vh] rounded-full aspect-square h-screen bg-blue-300"
+    ></div>
+    <div
+      id="image-container"
+      class="absolute left-[10vh] flex justify-center items-center aspect-square h-[90vh]"
+    >
+      <img src="../../../../assets/images/air_conditioner.png" alt="" />
+    </div>
+  </div>
+  <div
+    class="absolute top-[10vh] right-32 w-[35vw] flex flex-col justify-between items-end"
+  >
+    <h1 class="font-maxwell text-right text-4xl text-customGreen">
+      Compra, venta & mantenimiento de aires acondicionados
+    </h1>
+    <div
+      id="form-container"
+      class="relative mt-6 h-[70vh] w-96 rounded-3xl flex flex-col justify-center items-center bg-white backdrop-blur-sm border-2 overflow-hidden"
+    >
+      @if (accessType==='login') {
+      <app-login-form></app-login-form>
+      }@else if (accessType==='register') {
+      <app-register-form></app-register-form>
+      }
+    </div>
+  </div>
+</div>

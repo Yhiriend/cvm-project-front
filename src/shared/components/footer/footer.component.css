@@ -1,0 +1,21 @@
+#slider ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    animation: change 40s infinite alternate linear;
+}
+
+#slider li {
+    width: fit-content;
+    list-style: none;
+    margin-inline: 20px;
+}
+
+#slider li div {
+    overflow: hidden;
+}
+
+@keyframes change {
+    0%{margin-left: 0;}
+    100%{margin-left: -50%;}
+}

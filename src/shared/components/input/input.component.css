@@ -1,0 +1,74 @@
+.group {
+  position: relative;
+  margin: 0;
+  font-family: 'Maxwell-Regular';
+}
+
+textarea {
+  resize: none;
+}
+
+input,
+textarea {
+  background: none;
+  color: #2d2d2d;
+  font-size: 20px;
+  padding: 10px 10px 10px 20px;
+  display: block;
+  width: 100%;
+  border-radius: 40px;
+  border: 1px solid #c6c6c6;
+  letter-spacing: 0.1em;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus ~ label, input:valid ~ label,
+textarea:focus ~ label,
+textarea:valid ~ label {
+  top: -10px;
+  left: 15px;
+  font-size: 16px;
+  color: #81caeb;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: white;
+}
+input:focus ~ .bar:before,
+textarea:focus ~ .bar:before {
+  width: 85%;
+}
+
+input[type=password] {
+  letter-spacing: 0.2em;
+  font-family: '';
+}
+
+label {
+  color: #a1a1a1;
+  font-size: 20px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 20px;
+  top: 10px;
+  transition: 300ms ease all;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  left: 25px;
+  width: 100%;
+}
+.bar:before {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #81caeb;
+  transition: 300ms ease all;
+  left: 0%;
+}
