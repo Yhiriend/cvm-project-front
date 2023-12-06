@@ -5,17 +5,25 @@ import { selectCartProducts } from '../../../modules/cart/application/cart.selec
 import { CardCreatorService } from '../../../modules/core/helpers/card-creator.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { removeProductFromCartInStore } from '../../../modules/cart/application/cart.actions';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-cart-dialog',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './cart-dialog.component.html',
   styleUrl: './cart-dialog.component.css',
+  imports: [CommonModule, InputComponent],
 })
 export class CartDialogComponent {
   products: any[] = [];
   totalToPay = 0;
+  step: number = 1;
+  inputAddress = '';
+  inputPhone = '';
+  inputShipment = false;
+  inputPaymentMethod = '';
+  message = '';
+
   constructor(
     private readonly store: Store,
     private cardCreatorService: CardCreatorService,
@@ -62,6 +70,28 @@ export class CartDialogComponent {
   }
 
   onBuyCart() {
+    if(this.step === 1){
+      this.step = 2;
+    }else if(this.step === 2){
+      if(this.inputAddress === '' || this.inputPhone === '' || this.inputPaymentMethod === ''){
+        this.message = 'completa todos los campos'
+      }else{
 
+      }
+    }
+
+  }
+
+  onInputPhoneRef(arg0: string) {
+    this.inputPhone = arg0;
+  }
+  onInputAddress(arg0: string) {
+    this.inputAddress = arg0;
+  }
+  onSelectPaymentChange(event: any) {
+    this.inputPaymentMethod = event.target.value;
+  }
+  onRadioShipmentChange(arg0: boolean) {
+    this.inputShipment = arg0;
   }
 }

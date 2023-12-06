@@ -1,7 +1,7 @@
 <div
   class="relative w-full h-full bg-gray-300 p-2 font-maxwellRegular tracking-wider text-gray-400 overflow-y-auto"
 >
-  @if (products && products.length>0) {
+  @if (step===1) { @if (products && products.length>0) {
   <div
     *ngFor="let product of products"
     class="relative h-40 w-full mb-2 bg-white rounded-lg flex justify-between overflow-hidden"
@@ -38,10 +38,17 @@
         que se vea algo aqui en este campo
       </h1>
     </div>
-      <button (click)="onDeleteClick(product.id)" class="absolute top-0 right-0 w-10 h-10 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-0 pl-3 pb-3 text-gray-400 bg-gray-200 hover:bg-gray-300">
-      <img id="icon-delete" src="../../../assets/images/delete-svgrepo-com.svg" width="20" alt="">
+    <button
+      (click)="onDeleteClick(product.id)"
+      class="absolute top-0 right-0 w-10 h-10 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-0 pl-3 pb-3 text-gray-400 bg-gray-200 hover:bg-gray-300"
+    >
+      <img
+        id="icon-delete"
+        src="../../../assets/images/delete-svgrepo-com.svg"
+        width="20"
+        alt=""
+      />
     </button>
-
   </div>
   }@else {
   <div class="w-full h-[300px] flex flex-col justify-center items-center">
@@ -54,9 +61,114 @@
     <h1 class="font-bold">Wow... tu carrito está vacio!</h1>
     <p>Vamos, anímate a comprar aunque sea un solo aire acondicionado 😜</p>
   </div>
+  } }@else if (step===2) {
+  <div id="form-wrapper" class="w-full bg-white rounded-lg h-72 mb-2">
+    <div class="py-4 px-8">
+      <h1 class="mb-2 text-customBlack">
+        ¿ Deseas recibir el carrito de compra en tu domicio ?
+      </h1>
+      <div class="h-4 flex mb-6">
+        <div class="mb-[0.125rem] mr-4 block min-h-[1.5rem] pl-[1.5rem]">
+          <input
+            class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-customBlue checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-customBlue checked:after:bg-customBlue checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-customBlue checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-customBlue dark:checked:after:border-customBlue dark:checked:after:bg-customBlue dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-customBlue dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+            type="radio"
+            name="flexRadioDefault"
+            id="radioDefault01"
+            (change)="onRadioShipmentChange(true)"
+          />
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+            for="radioDefault01"
+          >
+            Si
+          </label>
+        </div>
+        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+          <input
+            class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-customBlue checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-customBlue checked:after:bg-customBlue checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-customBlue checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-customBlue dark:checked:after:border-customBlue dark:checked:after:bg-customBlue dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-customBlue dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+            type="radio"
+            name="flexRadioDefault"
+            id="radioDefault02"
+            (change)="onRadioShipmentChange(false)"
+            checked
+          />
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+            for="radioDefault02"
+          >
+            No
+          </label>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <div id="shipping-data" class="w-[40%]">
+          <h1 class="">Datos de envío</h1>
+          <hr class="w-full h-[1px] bg-gray-100" />
+          <div class="my-4">
+            <div class="group">
+              <input
+                #inputAddressRef
+                (keyup)="onInputAddress(inputAddressRef.value)"
+                type="text"
+                class="text-gray-600 text-left focus:outline-none bg-white font-maxwellRegular text-lg tracking-wider w-full h-12 flex items-center px-3 border-gray-300 rounded-[40px]"
+              /><span class="highlight"></span><span class="bar"></span>
+              <label>Dirección de residencia</label>
+            </div>
+          </div>
+          <div class="mt-4 mb-10">
+            <div class="group">
+              <input
+                #inputPhoneRef
+                (keyup)="onInputPhoneRef(inputPhoneRef.value)"
+                type="text"
+                class="text-gray-600 text-left focus:outline-none bg-white font-maxwellRegular text-lg tracking-wider w-full h-12 flex items-center px-3 border-gray-300 rounded-[40px]"
+              /><span class="highlight"></span><span class="bar"></span>
+              <label>Número de teléfono</label>
+            </div>
+          </div>
+          <div class="relative">
+            @if (message !== '') {
+            <p
+              class="absolute -top-8 text-center text-red-600 w-full font-maxwellRegular tracking-wider"
+            >
+              {{ message }}
+            </p>
+            }
+          </div>
+        </div>
+        <div id="payment-data" class="w-[55%]">
+          <h1 class="">Datos de pago</h1>
+          <hr class="w-full h-[1px] bg-gray-100 mb-4" />
+          <select
+            (change)="onSelectPaymentChange($event)"
+            id="payment-methods"
+            class="bg-white border border-gray-300 text-customBlack tracking-wider rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+            <option value="" disabled selected>Método de pago</option>
+            <option value="1">Físico</option>
+            <option value="2">Digital</option>
+          </select>
+          <div class="leading-4 mt-2">
+            <p>
+              <span class="underline">Método de pago físico</span>: para
+              completar y validar la compra debes hacercarte a nuestra tienda
+              física y realizar el pago
+            </p>
+            <p class="mt-1">
+              <span class="underline">Método de pago digital</span>: para
+              completar y validar la compra debes realizar la consignación del
+              valor total de tu compra a nuestra cuenta digital NEQUI (321 311
+              9045)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   }
 
   <div
+    id="footer-cart"
     class="w-full h-20 bg-customBlack rounded-lg flex items-center justify-evenly px-4"
   >
     <h1 class="text-center text-white">
@@ -66,12 +178,19 @@
       Total a pagar:
       <span class="font-mono">${{ totalToPay.toLocaleString() }}</span> COP
     </h1>
+    @if (products.length>0) {
     <button
-    (click)="onBuyCart()"
+      (click)="onBuyCart()"
       class="bg-customBlue h-10 px-4 rounded-2xl hover:bg-blue-600 text-white ml-3"
     >
-      Continuar con la compra
+      @if (step===1) {
+      <h1>Continuar con la compra</h1>
+      }@else if (step===2) {
+      <h1>Realizar compra</h1>
+      }
     </button>
+    }
+
     <button
       (click)="onCloseModal()"
       class="border-customBlue border-2 h-10 px-4 rounded-2xl text-customBlue hover:border-blue-600 hover:text-blue-600 ml-3"

@@ -1,7 +1,73 @@
-#icon-delete{
+#icon-delete {
     filter: invert(29%) sepia(34%) saturate(2%) hue-rotate(360deg) brightness(93%) contrast(73%);
 }
 
-#icon-delete:hover{
+#icon-delete:hover {
     filter: invert(51%) sepia(40%) saturate(7137%) hue-rotate(336deg) brightness(81%) contrast(84%);
+}
+
+.group {
+    position: relative;
+    margin: 0;
+    font-family: 'Maxwell-Regular';
+}
+
+#shipping-data input {
+    background: none;
+    color: #2d2d2d;
+    font-size: 20px;
+    padding: 10px 10px 10px 20px;
+    display: block;
+    width: 100%;
+    border-radius: 40px;
+    border: 1px solid #c6c6c6;
+    letter-spacing: 0.1em;
+}
+
+#shipping-data input:focus {
+    outline: none;
+}
+
+#shipping-data input:focus~label,
+#shipping-data input:valid~label {
+    top: -10px;
+    left: 15px;
+    font-size: 16px;
+    color: #81caeb;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: white;
+}
+
+#shipping-data input:focus~.bar:before {
+    width: 85%;
+}
+
+#shipping-data label {
+    color: #a1a1a1;
+    font-size: 20px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 10px;
+    transition: 300ms ease all;
+}
+
+#shipping-data .bar {
+    position: relative;
+    display: block;
+    left: 25px;
+    width: 100%;
+}
+
+#shipping-data .bar:before {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #81caeb;
+    transition: 300ms ease all;
+    left: 0%;
 }

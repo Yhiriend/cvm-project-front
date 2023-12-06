@@ -13,6 +13,7 @@ export interface CartState {
   total: number | null;
   productAdded: boolean | null;
   paid: boolean;
+  error: string | null
 }
 
 export const initialCartState: CartState = {
@@ -21,6 +22,7 @@ export const initialCartState: CartState = {
   total: null,
   productAdded: null,
   paid: false,
+  error: null
 };
 
 export const cartReducer = createReducer(
@@ -28,6 +30,7 @@ export const cartReducer = createReducer(
   on(addProductToCartResponse, (state, { response }) => ({
     ...state,
     productAdded: response.data,
+    error: response.message ?? null
   })),
   on(getCartResponse, (state, { response }) => ({
     ...state,

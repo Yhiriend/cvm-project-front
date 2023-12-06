@@ -10,21 +10,11 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { selectCurrentUser } from '../../../modules/user/application/user.selectors';
 import { Store } from '@ngrx/store';
-import {
-  getProducts,
-  getProductsResponse,
-} from '../../../modules/airconditioner/application/airconditioner.actions';
-import {
-  selectProducts,
-  selectSearching,
-} from '../../../modules/airconditioner/application/airconditioner.selectors';
-import { Airconditioner } from '../../../modules/airconditioner/domain/models/airconditioner.model';
+import { getProducts } from '../../../modules/airconditioner/application/airconditioner.actions';
+import { selectSearching } from '../../../modules/airconditioner/application/airconditioner.selectors';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../../modules/core/helpers/filter-state.service';
-import {
-  getCart,
-  getCartByUserId,
-} from '../../../modules/cart/application/cart.actions';
+import { getCart } from '../../../modules/cart/application/cart.actions';
 import { selectCartProducts } from '../../../modules/cart/application/cart.selectors';
 import { DialogService } from '../dialog.service';
 
@@ -100,6 +90,10 @@ export class HeaderComponent implements AfterViewInit {
 
   onLogoutClick() {
     localStorage.clear();
+    window.location.href = '';
+  }
+
+  onHomeClick() {
     window.location.href = '';
   }
 }

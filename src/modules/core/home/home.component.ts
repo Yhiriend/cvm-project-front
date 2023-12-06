@@ -12,7 +12,6 @@ import { Store } from '@ngrx/store';
 import { selectProducts } from '../../airconditioner/application/airconditioner.selectors';
 import { CardCreatorService } from '../helpers/card-creator.service';
 import { selectCartProductAdded } from '../../cart/application/cart.selectors';
-import { addProductToCartInStore, addProductToCartResponse } from '../../cart/application/cart.actions';
 import { ToastService } from '../../../shared/components/toast/toast.service';
 
 @Component({
@@ -30,6 +29,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   cardCreatoService = inject(CardCreatorService);
   toastService = inject(ToastService);
   productAdded: boolean = false;
+  message: string = '';
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.store.select(selectProducts).subscribe((products) => {
@@ -43,12 +43,18 @@ export class HomeComponent implements AfterViewInit, OnInit {
     });
     this.store.select(selectCartProductAdded).subscribe((productAdded) => {
       if (productAdded) {
-
         this.productAdded = productAdded;
+        this.message = '✅ Se ha agregado un elemento a tu carrito!'
         this.toastService.show();
         setTimeout(() => {
           this.toastService.hide();
-        }, 2000);
+        }, 2500);
+      } else if (productAdded === false) {
+        this.message = '❌ El producto ya está en el carrito'
+        this.toastService.show();
+        setTimeout(() => {
+          this.toastService.hide();
+        }, 2500);
       }
     });
   }

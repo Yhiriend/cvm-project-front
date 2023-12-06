@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToastService } from './toast.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { ToastService } from './toast.service';
 })
 export class ToastComponent {
   showToast: boolean = false;
+  @Input ('message') message: string = '';
 
   constructor(private toastService: ToastService) {
     this.toastService.showToast$.subscribe((show) => {

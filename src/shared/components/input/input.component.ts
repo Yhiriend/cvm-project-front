@@ -18,6 +18,7 @@ export class InputComponent {
   @Input('options') options: any;
   @Input('selectorType') selectorType: 'small' | 'normal' = 'normal';
 
+
   getSelectorClass() {
     if (this.selectorType === 'small') {
       return 'text-gray-600 text-center focus:outline-none bg-white font-maxwellRegular text-lg tracking-wider w-full h-8 flex items-center px-3 border-gray-300 rounded-[40px]';
