@@ -9,16 +9,6 @@ import { ToastService } from './toast.service';
   styleUrl: './toast.component.css',
 })
 export class ToastComponent {
-  showToast: boolean = false;
   @Input ('message') message: string = '';
 
-  constructor(private toastService: ToastService) {
-    this.toastService.showToast$.subscribe((show) => {
-      this.showToast = show;
-    });
-  }
-
-  hideToast(): void {
-    this.toastService.hide();
-  }
 }

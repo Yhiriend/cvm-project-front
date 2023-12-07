@@ -1,14 +1,14 @@
-@if (showToast) {
-    <div class="fixed bottom-2 right-6 w-fit opacity-70">
+<div class="fixed bottom-2 right-6 w-fit opacity-70">
   <div
     class="min-w-[400px] bg-customBlack text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3 ml-3"
     role="alert"
   >
     <div class="flex p-4">
-        {{message}}
-      <div class="ml-auto">
+      {{ message }}
+      <!--
+<div class="ml-auto">
         <button
-        (click)="hideToast()"
+          (click)="hideToast()"
           type="button"
           class="inline-flex flex-shrink-0 justify-center items-center h-4 w-4 rounded-md text-white/[.5] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-600 transition-all text-sm dark:focus:ring-offset-gray-900 dark:focus:ring-gray-800"
         >
@@ -28,8 +28,8 @@
           </svg>
         </button>
       </div>
+
+      -->
     </div>
   </div>
 </div>
-}
-

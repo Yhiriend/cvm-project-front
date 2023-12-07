@@ -78,6 +78,8 @@
       ></div>
     </div>
   </div>
+  @if (showToast) {
+    <app-toast [message]="message"></app-toast>
+  }
 
-  <app-toast [message]="message"></app-toast>
 
