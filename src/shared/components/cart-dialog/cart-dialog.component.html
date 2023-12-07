@@ -171,8 +171,11 @@
   </div>
   }
   @else if (step===3){
-    <div class="w-full h-72 mb-2 flex justify-center items-center tracking-wider">
+    <div class="w-full h-72 mb-2 flex flex-col justify-center items-center tracking-wider text-customBlack">
       <h1>{{message}}</h1>
+      @if(messageBody !== ''){
+        <p>{{messageBody}}</p>
+      }
     </div>
   }
 </div>

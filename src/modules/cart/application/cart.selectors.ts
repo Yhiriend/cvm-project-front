@@ -10,3 +10,9 @@ export const selectCartProductAdded = createSelector(
   selectCartState,
   (state) => state.productAdded
 );
+
+export const selectCartProductRemoved = createSelector(
+  selectCartState,
+  (state) => state.productRemoved
+);
+

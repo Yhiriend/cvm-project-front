@@ -53,4 +53,15 @@ export class CartApiService {
       })
     );
   }
+
+  removeProduct(cartId: number, productId: number): Observable<any> {
+    const body = {cartId, productId}
+    const url = `${environment.cartApi}/removeproduct`
+    return this.http.post(url, body).pipe(
+      map((response) => response),
+      catchError((error: any) => {
+        throw error;
+      })
+    );
+  }
 }

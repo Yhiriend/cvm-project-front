@@ -9,7 +9,11 @@ import { LoadingService } from '../../core/domain/loading.service';
 
 @Injectable()
 export class CartEffects {
-  constructor(private actions$: Actions, private cartService: CartApiService, private loadingService: LoadingService) {}
+  constructor(
+    private actions$: Actions,
+    private cartService: CartApiService,
+    private loadingService: LoadingService
+  ) {}
 
   addProductToCart$ = createEffect(() =>
     this.actions$.pipe(
@@ -21,7 +25,7 @@ export class CartEffects {
             of(CartActions.addProductToCartResponseFail({ error }))
           )
         )
-      ),
+      )
     )
   );
 
@@ -35,7 +39,7 @@ export class CartEffects {
             of(CartActions.getCartResponseFail({ error }))
           )
         )
-      ),
+      )
     )
   );
 
@@ -49,7 +53,7 @@ export class CartEffects {
             of(CartActions.getCartByUserIdFail({ error }))
           )
         )
-      ),
+      )
     )
   );
 
@@ -61,7 +65,23 @@ export class CartEffects {
           map((response) => CartActions.buyCartResponse({ response })),
           catchError((error: any) => of(CartActions.buyCartFail({ error })))
         )
-      ),
+      )
+    )
+  );
+
+  removeProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.removeProductFromCart),
+      exhaustMap((action) =>
+        this.cartService.removeProduct(action.cartId, action.productId).pipe(
+          map((response) =>
+            CartActions.removeProductFromCartResponse({ response })
+          ),
+          catchError((error: any) =>
+            of(CartActions.removeProductFromCartResponseFail({ error }))
+          )
+        )
+      )
     )
   );
 }

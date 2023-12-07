@@ -5,6 +5,7 @@ import {
   buyCartResponse,
   getCartByUserIdResponse,
   getCartResponse,
+  removeProductFromCartResponse,
   removeProductFromCartInStore,
 } from './cart.actions';
 
@@ -13,8 +14,10 @@ export interface CartState {
   id: number | null;
   total: number | null;
   productAdded: boolean | null;
+  productRemoved: boolean | null;
   paid: boolean | null;
-  error: string | null
+  purchaseReference: boolean | null;
+  error: string | null;
 }
 
 export const initialCartState: CartState = {
@@ -22,8 +25,10 @@ export const initialCartState: CartState = {
   id: null,
   total: null,
   productAdded: null,
+  productRemoved: null,
   paid: null,
-  error: null
+  purchaseReference: null,
+  error: null,
 };
 
 export const cartReducer = createReducer(
@@ -31,7 +36,7 @@ export const cartReducer = createReducer(
   on(addProductToCartResponse, (state, { response }) => ({
     ...state,
     productAdded: response.data,
-    error: response.message ?? null
+    error: response.message ?? null,
   })),
   on(getCartResponse, (state, { response }) => ({
     ...state,
@@ -59,5 +64,13 @@ export const cartReducer = createReducer(
     const updatedProducts = state.products.filter((p) => p.id !== productId);
     return { ...state, products: updatedProducts };
   }),
-  on(buyCartResponse, (state, {response}) => ({...state, paid: response.data ?? false}))
+  on(buyCartResponse, (state, { response }) => ({
+    ...state,
+    paid: response.data ?? false,
+    purchaseReference: response.billReference ?? null,
+  })),
+  on(removeProductFromCartResponse, (state, { response }) => ({
+    ...state,
+    productRemoved: response.data,
+  }))
 );

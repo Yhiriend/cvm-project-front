@@ -56,3 +56,15 @@ export const buyCartFail = createAction(
   '[CART] buy cart Fail',
   props<{ error: any }>()
 );
+export const removeProductFromCart = createAction(
+  '[CART] Remove product',
+  props<{ cartId: number; productId: number }>()
+);
+export const removeProductFromCartResponse = createAction(
+  '[CART] Remove product response',
+  props<{ response: any }>()
+);
+export const removeProductFromCartResponseFail = createAction(
+  '[CART] Remove product',
+  props<{ error: any }>()
+);
