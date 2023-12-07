@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Airconditioner } from '../../airconditioner/domain/models/airconditioner.model';
+import { PurchaseTransaction } from '../domain/models/purchase.model';
 
 export const addProductToCart = createAction(
   '[CART] Add product',
@@ -42,4 +43,16 @@ export const getCartByUserIdFail = createAction(
 export const removeProductFromCartInStore = createAction(
   '[CART] Remove product in the store',
   props<{ productId: number }>()
+);
+export const buyCart = createAction(
+  '[CART] buy cart',
+  props<{ purchaseTransaction: PurchaseTransaction }>()
+);
+export const buyCartResponse = createAction(
+  '[CART] buy cart Response',
+  props<{ response: any }>()
+);
+export const buyCartFail = createAction(
+  '[CART] buy cart Fail',
+  props<{ error: any }>()
 );

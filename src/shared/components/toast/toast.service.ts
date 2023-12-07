@@ -1,16 +1,18 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
-import { addProductToCartResponse } from '../../../modules/cart/application/cart.actions';
+import {
+  addProductToCartResponse,
+  buyCartResponse,
+} from '../../../modules/cart/application/cart.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
-
   private showToastSubject = new BehaviorSubject<boolean>(false);
   public showToast$ = this.showToastSubject.asObservable();
-  store = inject(Store)
+  store = inject(Store);
 
   constructor() {}
 
@@ -21,6 +23,7 @@ export class ToastService {
   hide(): void {
     const response = { data: null };
     this.store.dispatch(addProductToCartResponse({ response }));
+    //this.store.dispatch(buyCartResponse({ response }));
     this.showToastSubject.next(false);
   }
 }

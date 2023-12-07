@@ -13,7 +13,20 @@ import { ProductEffects } from '../modules/airconditioner/application/airconditi
 import { productReducer } from '../modules/airconditioner/application/ariconditioner.reducer';
 import { cartReducer } from '../modules/cart/application/cart.reducer';
 import { CartEffects } from '../modules/cart/application/cart.effects';
+import { appReducer } from '../modules/core/application/core.reducer';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(withFetch()), provideClientHydration(), provideStore({auth:userReducer, product: productReducer, cart: cartReducer}), provideEffects(UserEffects, ProductEffects, CartEffects), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(withFetch()),
+    provideClientHydration(),
+    provideStore({
+      app: appReducer,
+      auth: userReducer,
+      product: productReducer,
+      cart: cartReducer,
+    }),
+    provideEffects(UserEffects, ProductEffects, CartEffects),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
 };

@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   addProductToCartInStore,
   addProductToCartResponse,
+  buyCartResponse,
   getCartByUserIdResponse,
   getCartResponse,
   removeProductFromCartInStore,
@@ -12,7 +13,7 @@ export interface CartState {
   id: number | null;
   total: number | null;
   productAdded: boolean | null;
-  paid: boolean;
+  paid: boolean | null;
   error: string | null
 }
 
@@ -21,7 +22,7 @@ export const initialCartState: CartState = {
   id: null,
   total: null,
   productAdded: null,
-  paid: false,
+  paid: null,
   error: null
 };
 
@@ -57,5 +58,6 @@ export const cartReducer = createReducer(
   on(removeProductFromCartInStore, (state, { productId }) => {
     const updatedProducts = state.products.filter((p) => p.id !== productId);
     return { ...state, products: updatedProducts };
-  })
+  }),
+  on(buyCartResponse, (state, {response}) => ({...state, paid: response.data ?? false}))
 );

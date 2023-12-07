@@ -41,16 +41,17 @@ export class HomeComponent implements AfterViewInit, OnInit {
         );
       }
     });
+
     this.store.select(selectCartProductAdded).subscribe((productAdded) => {
       if (productAdded) {
         this.productAdded = productAdded;
-        this.message = '✅ Se ha agregado un elemento a tu carrito!'
+        this.message = '✅ Se ha agregado un elemento a tu carrito!';
         this.toastService.show();
         setTimeout(() => {
           this.toastService.hide();
         }, 2500);
       } else if (productAdded === false) {
-        this.message = '❌ El producto ya está en el carrito'
+        this.message = '❌ El producto ya está en el carrito';
         this.toastService.show();
         setTimeout(() => {
           this.toastService.hide();

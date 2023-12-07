@@ -12,8 +12,11 @@ import {
   addProductToCart,
   addProductToCartInStore,
 } from '../../../modules/cart/application/cart.actions';
-import { selectCartProductAdded } from '../../../modules/cart/application/cart.selectors';
-import { takeLast } from 'rxjs';
+import {
+  selectCartProductAdded,
+  selectCartState,
+} from '../../../modules/cart/application/cart.selectors';
+import { skip, take, takeLast } from 'rxjs';
 
 @Component({
   selector: 'app-product-dialog',
@@ -61,16 +64,18 @@ export class ProductDialogComponent {
   }
 
   onAddToCart() {
-    if (this.isUserValid) {
-      const product = this.data.product;
-      const productId = product.id;
-      this.store.dispatch(addProductToCart({ cartId: 1, productId }));
-      this.store.select(selectCartProductAdded).subscribe((added) => {
-        if (added) {
-          this.store.dispatch(addProductToCartInStore({ product }));
-        }
-      });
-      this.onCloseModal();
-    }
+    this.store.select(selectCartState).subscribe((cart) => {
+      if (this.isUserValid) {
+        const product = this.data.product;
+        const productId = product.id;
+        this.store.dispatch(addProductToCart({ cartId: cart.id!, productId }));
+        this.store.select(selectCartProductAdded).pipe(skip(1),take(1)).subscribe((added) => {
+          if (added) {
+            //this.store.dispatch(addProductToCartInStore({ product }));
+          }
+        });
+        this.onCloseModal();
+      }
+    });
   }
 }

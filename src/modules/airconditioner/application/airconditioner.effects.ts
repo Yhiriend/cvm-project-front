@@ -2,13 +2,17 @@ import { Injectable } from '@angular/core';
 import { AirconditionerApiService } from '../infrastructure/airconditioner-api.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ProductActions from './airconditioner.actions';
-import { catchError, exhaustMap, map, of } from 'rxjs';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { startLoading, stopLoading } from '../../core/application/core.actions';
+import { LoadingService } from '../../core/domain/loading.service';
 
 @Injectable()
 export class ProductEffects {
   constructor(
     private actions$: Actions,
-    private productService: AirconditionerApiService
+    private productService: AirconditionerApiService,
+    private loadingService: LoadingService
   ) {}
 
   newest$ = createEffect(() =>
@@ -23,7 +27,7 @@ export class ProductEffects {
             of(ProductActions.getNewestProductsResponseFail({ error }))
           )
         )
-      )
+      ),
     )
   );
 
@@ -37,7 +41,7 @@ export class ProductEffects {
             of(ProductActions.getProductsResponseFail({ error }))
           )
         )
-      )
+      ),
     )
   );
 }

@@ -1,6 +1,7 @@
 <div
-  class="relative w-full h-full bg-gray-300 p-2 font-maxwellRegular tracking-wider text-gray-400 overflow-y-auto"
+  class="relative w-full h-full bg-gray-300 p-2 font-maxwellRegular tracking-wider text-gray-400 "
 >
+<div class="h-[300px] w-full overflow-y-auto">
   @if (step===1) { @if (products && products.length>0) {
   <div
     *ngFor="let product of products"
@@ -61,7 +62,8 @@
     <h1 class="font-bold">Wow... tu carrito está vacio!</h1>
     <p>Vamos, anímate a comprar aunque sea un solo aire acondicionado 😜</p>
   </div>
-  } }@else if (step===2) {
+  } }
+  @else if (step===2) {
   <div id="form-wrapper" class="w-full bg-white rounded-lg h-72 mb-2">
     <div class="py-4 px-8">
       <h1 class="mb-2 text-customBlack">
@@ -107,6 +109,7 @@
           <div class="my-4">
             <div class="group">
               <input
+              [disabled]="!inputShipment"
                 #inputAddressRef
                 (keyup)="onInputAddress(inputAddressRef.value)"
                 type="text"
@@ -118,6 +121,7 @@
           <div class="mt-4 mb-10">
             <div class="group">
               <input
+              [disabled]="!inputShipment"
                 #inputPhoneRef
                 (keyup)="onInputPhoneRef(inputPhoneRef.value)"
                 type="text"
@@ -145,8 +149,8 @@
             class="bg-white border border-gray-300 text-customBlack tracking-wider rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           >
             <option value="" disabled selected>Método de pago</option>
-            <option value="1">Físico</option>
-            <option value="2">Digital</option>
+            <option value="FÍSICO">Físico</option>
+            <option value="DIGITAL">Digital</option>
           </select>
           <div class="leading-4 mt-2">
             <p>
@@ -166,7 +170,12 @@
     </div>
   </div>
   }
-
+  @else if (step===3){
+    <div class="w-full h-72 mb-2 flex justify-center items-center tracking-wider">
+      <h1>{{message}}</h1>
+    </div>
+  }
+</div>
   <div
     id="footer-cart"
     class="w-full h-20 bg-customBlack rounded-lg flex items-center justify-evenly px-4"
@@ -178,7 +187,7 @@
       Total a pagar:
       <span class="font-mono">${{ totalToPay.toLocaleString() }}</span> COP
     </h1>
-    @if (products.length>0) {
+    @if (products.length>0 && step<=2) {
     <button
       (click)="onBuyCart()"
       class="bg-customBlue h-10 px-4 rounded-2xl hover:bg-blue-600 text-white ml-3"
