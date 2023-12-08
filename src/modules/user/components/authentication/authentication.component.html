@@ -23,14 +23,11 @@
     </div>
   </div>
   <div
-    class="absolute top-[10vh] right-32 w-[35vw] flex flex-col justify-between items-end"
+    class="absolute top-0 right-32 w-[35vw] h-full flex justify-around items-center"
   >
-    <h1 class="font-maxwell text-right text-4xl text-customGreen">
-      Compra, venta & mantenimiento de aires acondicionados
-    </h1>
     <div
       id="form-container"
-      class="relative mt-6 h-[70vh] w-96 rounded-3xl flex flex-col justify-center items-center bg-white backdrop-blur-sm border-2 overflow-hidden"
+      class="relative ml-10 mt-2 h-fit w-96 min-w-[384px] rounded-3xl flex flex-col justify-center items-center bg-white backdrop-blur-sm border-2 overflow-hidden"
     >
       @if (accessType==='login') {
       <app-login-form></app-login-form>
