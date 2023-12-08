@@ -1,0 +1,114 @@
+<div class="relative w-full h-full bg-white overflow-y-auto">
+  <form class="px-10 py-6" [formGroup]="saleForm" (submit)="onSubmit($event)">
+    <h1 class="text-center font-maxwellRegular text-gray-400 text-3xl">
+      Envíanos la información del producto
+    </h1>
+    <div class="h-4"></div>
+    <div class="flex justify-evenly">
+      <div class="w-2/5">
+        <div class="mb-4">
+          <app-input
+            inputName="brand"
+            inputId="brand"
+            [control]="saleForm.controls['brand']"
+            inputRequired="required"
+            inputLabel="Marca *"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="cooling_capacity"
+            inputId="cooling_capacity"
+            [control]="saleForm.controls['cooling_capacity']"
+            inputRequired="required"
+            inputLabel="Capacidad de enfriamiento ( BTU )"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="type"
+            inputId="type"
+            [control]="saleForm.controls['type']"
+            inputRequired="required"
+            inputLabel="Tipo"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="tech"
+            inputId="tech"
+            [control]="saleForm.controls['tech']"
+            inputRequired="required"
+            inputLabel="Tecnología"
+          ></app-input>
+        </div>
+      </div>
+      <div class="h-[250px] w-[2px] bg-gray-200"></div>
+      <div class="w-2/5">
+        <div class="mb-4">
+          <app-input
+            inputName="voltage"
+            inputId="voltage"
+            [control]="saleForm.controls['voltage']"
+            inputRequired="required"
+            inputType="number"
+            inputLabel="Voltaje ( V ) *"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="purchase_date"
+            inputId="purchase_date"
+            [control]="saleForm.controls['purchase_date']"
+            inputRequired="required"
+            inputLabel="Cuando compraste el producto *"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="desired_price"
+            inputId="desired_price"
+            [control]="saleForm.controls['desired_price']"
+            inputRequired="required"
+            inputLabel="Precio deseado *"
+          ></app-input>
+        </div>
+
+        <div class="mb-4">
+          <app-input
+            inputName="aditional_info"
+            inputId="aditional_info"
+            [control]="saleForm.controls['aditional_info']"
+            inputRequired="required"
+            inputLabel="Información adicional"
+          ></app-input>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative w-full">
+      @if (msg) {
+      <p
+        class="absolute -top-4 text-center text-red-600 w-full font-maxwellRegular tracking-wider"
+      >
+        {{ msg }}
+      </p>
+      }
+    </div>
+    <div class="w-full mt-4">
+      <app-button
+        buttonColor="primary"
+        buttonType="submit"
+        buttonText="Solicitar revisión"
+      ></app-button>
+    </div>
+  </form>
+  <div class="absolute top-0 right-0">
+    <button (click)="onCloseModal()" class="w-12 h-12 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-1 pl-2 pb-2 text-gray-400 bg-gray-200 hover:bg-gray-300 hover:text-red-400">X</button>
+  </div>
+</div>

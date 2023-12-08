@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { Airconditioner } from '../../modules/airconditioner/domain/models/airconditioner.model';
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+import { SaleComponent } from './sale/sale.component';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +31,16 @@ export class DialogService {
       minHeight: '400px',
       data: {},
     });
+  }
+
+  openSaleDialog(): void {
+    this.dialog.open(SaleComponent, {
+      disableClose: true,
+      width: '800px',
+      minWidth: '800px',
+      height: '450px',
+      minHeight: '450px',
+      data: {},
+    })
   }
 }

@@ -39,25 +39,18 @@
   </div>
 
   <div class="my-5 w-full flex justify-evenly items-center">
-    <div class="w-[400px] h-[150px]">
+    <div class="w-[600px] h-[150px]">
       <app-card-service
-        cardTitle="Compra Aires Acondicionados"
-        imageUrl="../../../assets/images/multiAirConditioners.png"
-        [imageSize]="400"
+        cardTitle="Solicita nuestros servicios"
+        imageUrl="../../../assets/images/services.jpg"
+        (onCardClick)="onServiceCardClick()"
       ></app-card-service>
     </div>
-    <div class="w-[380px] h-[150px]">
-      <app-card-service
-        cardTitle="Solicita Nuestros servicios"
-        imageUrl="../../../assets/images/serviceCardPresentation.png"
-        [imageSize]="180"
-      ></app-card-service>
-    </div>
-    <div class="w-[380px] h-[150px]">
+    <div class="w-[600px] h-[150px]">
       <app-card-service
         cardTitle="Vende tu Aire Acondicionado"
-        imageUrl="../../../assets/images/saleAirConditioner.png"
-        [imageSize]="250"
+        imageUrl="../../../assets/images/sales.jpg"
+        (onCardClick)="onSaleCardClick()"
       ></app-card-service>
     </div>
   </div>

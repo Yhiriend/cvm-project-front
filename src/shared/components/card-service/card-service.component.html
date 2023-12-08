@@ -1,15 +1,16 @@
 <div
-  class="flex justify-evenly overflow-hidden pl-8 items-center w-full h-full rounded-[40px] border-[1px] border-gray-100 bg-white"
+  class="relative flex justify-center overflow-hidden items-center w-full h-full rounded-[40px] border-[2px] border-customBlack bg-white"
 >
-  <div>
+<div class="absolute">
+    <img [src]="imageUrl" alt="" height="400">
+  </div>
+  <div class="absolute">
     <div>
-      <h1 class="font-maxwellRegular text-2xl leading-6 text-customBlack">{{ cardTitle }}</h1>
+      <h1 class="font-maxwellRegular text-4xl tracking-wider leading-6 text-white">{{ cardTitle }}</h1>
     </div>
     <div class="mt-4">
-      <button class="rounded-[40px] bg-customGreen font-maxwellRegular text-white px-4 hover:bg-green-600">ver más</button>
+      <button (click)="onCardEmitClick()" class="rounded-[40px] bg-customGreen font-maxwellRegular text-white px-4 hover:bg-green-600 tracking-wider">ver más</button>
     </div>
   </div>
-  <div class="relative -right-4">
-    <img [src]="imageUrl" alt="" [width]="imageSize">
-  </div>
+
 </div>

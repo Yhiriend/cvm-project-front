@@ -13,6 +13,7 @@ import { selectProducts } from '../../airconditioner/application/airconditioner.
 import { CardCreatorService } from '../helpers/card-creator.service';
 import { selectCartProductAdded } from '../../cart/application/cart.selectors';
 import { ToastService } from '../../../shared/components/toast/toast.service';
+import { DialogService } from '../../../shared/components/dialog.service';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   renderer = inject(Renderer2);
   store = inject(Store);
   cardCreatoService = inject(CardCreatorService);
+  dialogService = inject(DialogService);
 
   ngOnInit(): void {}
   ngAfterViewInit(): void {
@@ -39,5 +41,13 @@ export class HomeComponent implements AfterViewInit, OnInit {
         );
       }
     });
+  }
+
+  onSaleCardClick() {
+    this.dialogService.openSaleDialog();
+  }
+
+  onServiceCardClick() {
+    console.log('wanna get service?');
   }
 }

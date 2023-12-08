@@ -31,7 +31,6 @@ export default class ImageUploadComponent {
       this.http.post<any>(`${environment.productApi}/saveimage`, formData)
         .subscribe(response => {
           console.log(response);
-          // Aquí puedes manejar la respuesta del servidor
         });
     }
   }
