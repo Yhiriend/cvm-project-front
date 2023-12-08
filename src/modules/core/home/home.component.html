@@ -1,85 +1,80 @@
 <div class="bg-gray-200">
-    <div class="w-full h-[380px] flex justify-center items-center bg-blue-300">
-      <div class="flex justify-center items-center">
-        <div class="mr-10 opacity-10">
-          <img
-            src="../../../assets/images/patronFormas.png"
-            alt=""
-            width="300px"
-          />
-        </div>
-        <div class="mr-10">
-          <h1 class="font-maxwellBold text-4xl tracking-wider text-customBlack">
-            COMPRA-VENTA
-          </h1>
-          <div class="font-maxwellRegular tracking-wider">
-            <p>*Aires Acondicionados Nuevos</p>
-            <p>*Tu usado ideal</p>
-            <p>*Compramos tu aire acondicionado</p>
-          </div>
-        </div>
-        <div class="relative">
-          <div class="relative w-[300px] h-[300px] rounded-full bg-gray-300">
-            <img
-              class="absolute"
-              src="../../../assets/images/presentationAirConditioner.png"
-              alt=""
-              width="300px"
-            />
-          </div>
-        </div>
-        <div class="ml-10 opacity-10">
-          <img
-            src="../../../assets/images/patronFormas.png"
-            alt=""
-            width="300px"
-          />
-        </div>
+  <div class="w-full h-[380px] flex justify-center items-center bg-blue-300">
+    <div class="flex justify-center items-center">
+      <div class="mr-10 opacity-10">
+        <img
+          src="../../../assets/images/patronFormas.png"
+          alt=""
+          width="300px"
+        />
       </div>
-    </div>
-
-    <div class="my-5 w-full flex justify-evenly items-center">
-      <div class="w-[400px] h-[150px]">
-        <app-card-service
-          cardTitle="Compra Aires Acondicionados"
-          imageUrl="../../../assets/images/multiAirConditioners.png"
-          [imageSize]="400"
-        ></app-card-service>
-      </div>
-      <div class="w-[380px] h-[150px]">
-        <app-card-service
-          cardTitle="Solicita Nuestros servicios"
-          imageUrl="../../../assets/images/serviceCardPresentation.png"
-          [imageSize]="180"
-        ></app-card-service>
-      </div>
-      <div class="w-[380px] h-[150px]">
-        <app-card-service
-          cardTitle="Vende tu Aire Acondicionado"
-          imageUrl="../../../assets/images/saleAirConditioner.png"
-          [imageSize]="250"
-        ></app-card-service>
-      </div>
-    </div>
-
-    <div class="w-full mt-16 flex flex-col justify-start items-center">
-      <div class="w-full pl-10 mb-2">
-        <h1
-          class="font-maxwellRegular text-left text-2xl text-customBlack tracking-wider"
-        >
-          Nuevo en nuestra tienda
+      <div class="mr-10">
+        <h1 class="font-maxwellBold text-4xl tracking-wider text-customBlack">
+          COMPRA-VENTA
         </h1>
+        <div class="font-maxwellRegular tracking-wider">
+          <p>*Aires Acondicionados Nuevos</p>
+          <p>*Tu usado ideal</p>
+          <p>*Compramos tu aire acondicionado</p>
+        </div>
       </div>
-      <hr class="w-full" />
-      <div
-        #productContainer
-        id="product-wrapper"
-        class="w-full bg-gray-200"
-      ></div>
+      <div class="relative">
+        <div class="relative w-[300px] h-[300px] rounded-full bg-gray-300">
+          <img
+            class="absolute"
+            src="../../../assets/images/presentationAirConditioner.png"
+            alt=""
+            width="300px"
+          />
+        </div>
+      </div>
+      <div class="ml-10 opacity-10">
+        <img
+          src="../../../assets/images/patronFormas.png"
+          alt=""
+          width="300px"
+        />
+      </div>
     </div>
   </div>
-  @if (showToast) {
-    <app-toast [message]="message"></app-toast>
-  }
 
+  <div class="my-5 w-full flex justify-evenly items-center">
+    <div class="w-[400px] h-[150px]">
+      <app-card-service
+        cardTitle="Compra Aires Acondicionados"
+        imageUrl="../../../assets/images/multiAirConditioners.png"
+        [imageSize]="400"
+      ></app-card-service>
+    </div>
+    <div class="w-[380px] h-[150px]">
+      <app-card-service
+        cardTitle="Solicita Nuestros servicios"
+        imageUrl="../../../assets/images/serviceCardPresentation.png"
+        [imageSize]="180"
+      ></app-card-service>
+    </div>
+    <div class="w-[380px] h-[150px]">
+      <app-card-service
+        cardTitle="Vende tu Aire Acondicionado"
+        imageUrl="../../../assets/images/saleAirConditioner.png"
+        [imageSize]="250"
+      ></app-card-service>
+    </div>
+  </div>
 
+  <div class="w-full mt-16 flex flex-col justify-start items-center">
+    <div class="w-full pl-10 mb-2">
+      <h1
+        class="font-maxwellRegular text-left text-2xl text-customBlack tracking-wider"
+      >
+        Nuevo en nuestra tienda
+      </h1>
+    </div>
+    <hr class="w-full" />
+    <div
+      #productContainer
+      id="product-wrapper"
+      class="w-full bg-gray-200"
+    ></div>
+  </div>
+</div>

@@ -27,19 +27,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
   renderer = inject(Renderer2);
   store = inject(Store);
   cardCreatoService = inject(CardCreatorService);
-  toastService = inject(ToastService);
-  message: string = '';
-  showToast = false;
-  ngOnInit(): void {
-    this.toastService.toast$.subscribe((res: any) => {
-      console.log(res)
-      this.message = res.message;
-      this.showToast = true;
-      setTimeout(() => {
-        this.showToast = false;
-      }, 2500);
-    });
-  }
+
+  ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.store.select(selectProducts).subscribe((products) => {
       if (products) {

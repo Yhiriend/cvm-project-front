@@ -10,6 +10,7 @@ import { CardCreatorService } from '../../../modules/core/helpers/card-creator.s
 import { MatDialogRef } from '@angular/material/dialog';
 import {
   buyCart,
+  getCart,
   removeProductFromCartInStore,
   removeProductFromCartResponse,
 } from '../../../modules/cart/application/cart.actions';
@@ -82,6 +83,10 @@ export class CartDialogComponent implements OnDestroy {
   }
 
   onCloseModal() {
+    if (this.step === 3) {
+      this.ngOnDestroy();
+      window.location.href = '';
+    }
     this.dialogRef.close();
   }
 
@@ -94,15 +99,20 @@ export class CartDialogComponent implements OnDestroy {
           removeProductFromCart({ cartId: cart.id!, productId })
         );
       });
-    this.store.select(selectCartProductRemoved).pipe(skip(1),take(1)).subscribe((removed) => {
-      console.log(removed)
-      if (removed) {
-        this.toastService.show('❗ Se ha eliminado un elemento de tu carrito');
-        this.store.dispatch(removeProductFromCartInStore({ productId }));
-      } else if (removed === false) {
-        this.toastService.show('⛔ Error al eliminar el producto');
-      }
-    });
+    this.store
+      .select(selectCartProductRemoved)
+      .pipe(skip(1), take(1))
+      .subscribe((removed) => {
+        console.log(removed);
+        if (removed) {
+          this.toastService.show(
+            '❗ Se ha eliminado un elemento de tu carrito'
+          );
+          this.store.dispatch(removeProductFromCartInStore({ productId }));
+        } else if (removed === false) {
+          this.toastService.show('⛔ Error al eliminar el producto');
+        }
+      });
 
     if (this.products && this.products.length < 1) {
       this.onCloseModal();
@@ -115,24 +125,23 @@ export class CartDialogComponent implements OnDestroy {
     } else if (this.step === 2) {
       let paymentValid = false;
       let inputsValid = false;
-      if(this.inputPaymentMethod !== ''){
+      if (this.inputPaymentMethod !== '') {
         paymentValid = true;
-        if(this.inputShipment){
-          if (this.inputAddress === '' || this.inputPhone === '')
-          {
-          this.message = 'completa todos los campos';
-          inputsValid = false;
-        }else {
+        if (this.inputShipment) {
+          if (this.inputAddress === '' || this.inputPhone === '') {
+            this.message = 'completa todos los campos';
+            inputsValid = false;
+          } else {
+            inputsValid = true;
+          }
+        } else {
           inputsValid = true;
         }
-        }else {
-          inputsValid = true;
-        }
-      }else {
+      } else {
         this.message = 'selecciona el método de pago 🏹';
         paymentValid = false;
       }
-      if(inputsValid && paymentValid){
+      if (inputsValid && paymentValid) {
         this.buyCart();
       }
     }
@@ -147,27 +156,30 @@ export class CartDialogComponent implements OnDestroy {
       .subscribe(([cart, user]) => {
         if (this.step === 3) {
           if (cart.paid === true) {
-            this.message = '✅ Tu compra ha sido reservada con la referencia: '+cart.purchaseReference;
-            this.messageBody = 'El producto seguirá siendo visto por cualquier otro usuario hasta que realices el pago de tu compra'
-          } else if(cart.paid === false) {
+            this.message =
+              '✅ Tu compra ha sido reservada con la referencia: ' +
+              cart.purchaseReference;
+            this.messageBody =
+              'El producto seguirá siendo visto por cualquier otro usuario hasta que realices el pago de tu compra';
+          } else if (cart.paid === false) {
             this.message =
               '❌ No pudimos reservar tu compra. Inténtalo más tarde.';
+            this.messageBody = '';
           }
         } else {
           if (cart && cart.id && user) {
-          const purchaseTransaction: PurchaseTransaction = {
-            cartId: cart.id!,
-            totalToPay: this.totalToPay,
-            paymentMethod: this.inputPaymentMethod,
-            address: this.inputAddress === '' ? null : this.inputAddress,
-            phone: this.inputPhone === '' ? null : this.inputPhone,
-            userId: user.id,
-          };
-          this.store.dispatch(buyCart({ purchaseTransaction }));
-          this.step = 3;
+            const purchaseTransaction: PurchaseTransaction = {
+              cartId: cart.id!,
+              totalToPay: this.totalToPay,
+              paymentMethod: this.inputPaymentMethod,
+              address: this.inputAddress === '' ? null : this.inputAddress,
+              phone: this.inputPhone === '' ? null : this.inputPhone,
+              userId: user.id,
+            };
+            this.store.dispatch(buyCart({ purchaseTransaction }));
+            this.step = 3;
+          }
         }
-        }
-
       });
   }
 
