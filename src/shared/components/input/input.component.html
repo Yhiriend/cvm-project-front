@@ -1,24 +1,24 @@
 @switch (inputType) { @case ('text') {
 <div class="group">
-  <input type="text" required="{{inputRequired}}" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
+  <input placeholder="{{placeholder}}" type="text" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
   ><span class="bar"></span>
   <label>{{inputLabel}}</label>
 </div>
 } @case ('number') {
 <div class="group">
-  <input type="number" required="{{inputRequired}}" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
+  <input (input)="onInput($event)" placeholder="{{placeholder}}" type="number" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
   ><span class="bar"></span>
   <label>{{inputLabel}}</label>
 </div>
 } @case ('password') {
 <div class="group">
-  <input type="password" required="{{inputRequired}}" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
+  <input placeholder="{{placeholder}}" type="password" id="{{inputId}}" name="{{inputName}}" [formControl]="control"/><span class="highlight"></span
   ><span class="bar"></span>
   <label>{{inputLabel}}</label>
 </div>
 } @case ('textarea') {
 <div class="group">
-  <textarea type="textarea" rows="5" required="{{inputRequired}}" id="{{inputId}}" name="{{inputName}}" [formControl]="control"></textarea
+  <textarea type="textarea" rows="5" id="{{inputId}}" name="{{inputName}}" [formControl]="control"></textarea
   ><span class="highlight"></span><span class="bar"></span>
   <label>{{inputLabel}}</label>
 </div>
@@ -28,7 +28,6 @@
   name="{{ inputName }}"
   [formControl]="control"
   class="{{getSelectorClass()}}"
-  [required]="inputRequired"
 >
   <option value="" disabled selected>{{ inputLabel }}</option>
   <option *ngFor="let option of options" [value]="option.value">

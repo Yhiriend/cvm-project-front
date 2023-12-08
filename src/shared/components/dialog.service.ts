@@ -38,8 +38,8 @@ export class DialogService {
       disableClose: true,
       width: '800px',
       minWidth: '800px',
-      height: '450px',
-      minHeight: '450px',
+      height: '460px',
+      minHeight: '460px',
       data: {},
     })
   }

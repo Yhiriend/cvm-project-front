@@ -14,6 +14,8 @@ import { productReducer } from '../modules/airconditioner/application/ariconditi
 import { cartReducer } from '../modules/cart/application/cart.reducer';
 import { CartEffects } from '../modules/cart/application/cart.effects';
 import { appReducer } from '../modules/core/application/core.reducer';
+import { SaleEffects } from '../modules/sale/application/sale.effects';
+import { saleReducer } from '../modules/sale/application/sale.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,8 +27,9 @@ export const appConfig: ApplicationConfig = {
       auth: userReducer,
       product: productReducer,
       cart: cartReducer,
+      sale: saleReducer
     }),
-    provideEffects(UserEffects, ProductEffects, CartEffects),
+    provideEffects(UserEffects, ProductEffects, CartEffects, SaleEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
