@@ -1,5 +1,7 @@
 <form class="px-10 py-4" [formGroup]="registerForm" (submit)="onSubmit($event)">
-  <h1 class="text-center font-maxwellRegular text-gray-400 text-3xl">Nuevo registro</h1>
+  <h1 class="text-center font-maxwellRegular text-gray-400 text-3xl">
+    Nuevo registro
+  </h1>
   <div class="my-4">
     <app-input
       inputName="name"
@@ -39,7 +41,11 @@
   </div>
   <div class="relative w-full">
     @if (msg) {
-    <p class="absolute -top-8 text-center text-red-600 w-full font-maxwellRegular tracking-wider">{{msg}}</p>
+    <p
+      class="absolute -top-8 text-center text-red-600 w-full font-maxwellRegular tracking-wider"
+    >
+      {{ msg }}
+    </p>
     }
   </div>
   <div class="w-full my-4">
@@ -53,12 +59,25 @@
   <div class="w-full mb-4 px-4">
     <p class="text-sm font-maxwellRegular leading-4 tracking-wider">
       Al registrarte, aceptas los
-      <a href="#" class="text-blue-500 hover:underline">Términos de servicio</a>
+      <a
+        target="_blank"
+        href="https://www.sic.gov.co/sites/default/files/documentos/072020/Pol%C3%ADtica%20de%20Tratamiento%20de%20Datos%20Personales%20-%20SIC.pdf"
+        class="text-blue-500 hover:underline"
+        >Términos de servicio</a
+      >
       y la
-      <a href="#" class="text-blue-500 hover:underline"
+      <a
+        target="_blank"
+        href="https://www.sic.gov.co/sites/default/files/documentos/072020/Pol%C3%ADtica%20de%20Tratamiento%20de%20Datos%20Personales%20-%20SIC.pdf"
+        class="text-blue-500 hover:underline"
         >Política de privacidad</a
       >, incluida la política de
-      <a href="#" class="text-blue-500 hover:underline">Uso de Cookies</a>.
+      <a
+        target="_blank"
+        href="https://www.sic.gov.co/sites/default/files/documentos/072020/Pol%C3%ADtica%20de%20Tratamiento%20de%20Datos%20Personales%20-%20SIC.pdf"
+        class="text-blue-500 hover:underline"
+        >Uso de Cookies</a
+      >.
     </p>
   </div>
 

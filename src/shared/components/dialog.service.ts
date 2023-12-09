@@ -4,6 +4,7 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
 import { Airconditioner } from '../../modules/airconditioner/domain/models/airconditioner.model';
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 import { SaleComponent } from './sale/sale.component';
+import { ServiceDialogComponent } from './service-dialog/service-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,17 @@ export class DialogService {
 
   openSaleDialog(): void {
     this.dialog.open(SaleComponent, {
+      disableClose: true,
+      width: '800px',
+      minWidth: '800px',
+      height: '460px',
+      minHeight: '460px',
+      data: {},
+    })
+  }
+
+  openServiceDialog(): void {
+    this.dialog.open(ServiceDialogComponent, {
       disableClose: true,
       width: '800px',
       minWidth: '800px',

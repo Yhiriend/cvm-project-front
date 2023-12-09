@@ -172,6 +172,7 @@ export class CartDialogComponent implements OnDestroy {
               cartId: cart.id!,
               totalToPay: this.totalToPay,
               paymentMethod: this.inputPaymentMethod,
+              paymentType: 'COMPRA',
               address: this.inputAddress === '' ? null : this.inputAddress,
               phone: this.inputPhone === '' ? null : this.inputPhone,
               userId: user.id,

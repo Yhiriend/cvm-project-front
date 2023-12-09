@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -8,9 +8,13 @@ import {
 import { SharedModule } from '../shared.module';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { newReviewResquet } from '../../../modules/sale/application/sale.actions';
+import {
+  newReviewResquet,
+  newReviewResquetResponse,
+} from '../../../modules/sale/application/sale.actions';
 import { ReviewRequest } from '../../../modules/sale/domain/models/review-request.model';
 import { selectRequestSent } from '../../../modules/sale/application/sale.selectors';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-sale',
@@ -19,12 +23,13 @@ import { selectRequestSent } from '../../../modules/sale/application/sale.select
   styleUrl: './sale.component.css',
   imports: [ReactiveFormsModule, SharedModule],
 })
-export class SaleComponent implements OnInit {
+export class SaleComponent implements OnInit, OnDestroy {
   saleForm;
   customerForm;
   msg: string = '';
   msgBody: string = '';
   step = 1;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -49,18 +54,25 @@ export class SaleComponent implements OnInit {
       phone: new FormControl('', Validators.required),
     });
   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   ngOnInit(): void {
-    this.store.select(selectRequestSent).subscribe((request) => {
-      if (request) {
-        this.msg = '✅ Tu solicitud será procesada';
-        this.msgBody =
-          'Cuando el técnico esté listo te notificaremos al número de teléfono que registraste';
-      } else if (request === false) {
-        this.msg = '❗ Ups';
-        this.msgBody =
-          'Parece que hubo un error. Por favor inténtalo más tarde';
-      }
-    });
+    this.store
+      .select(selectRequestSent)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((request) => {
+        if (request) {
+          this.msg = '✅ Tu solicitud será procesada';
+          this.msgBody =
+            'Cuando el técnico esté listo te notificaremos al número de teléfono que registraste';
+        } else if (request === false) {
+          this.msg = '❗ Ups';
+          this.msgBody =
+            'Parece que hubo un error. Por favor inténtalo más tarde';
+        }
+      });
   }
 
   onSubmit(event: Event) {
@@ -114,7 +126,18 @@ export class SaleComponent implements OnInit {
     }
   }
 
+  onPrevFormClick() {
+    this.msg = ''
+    this.step = 1;
+  }
+
   onCloseModal() {
+    this.step = 1;
+    this.msg = '';
+    this.msgBody = '';
+    const response = { data: null };
+    this.store.dispatch(newReviewResquetResponse({ response }));
+    this.ngOnDestroy();
     this.dialogRef.close();
   }
 }

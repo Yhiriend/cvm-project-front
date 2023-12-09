@@ -1,0 +1,118 @@
+#radio-images {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#custom-radio input {
+    display: none;
+}
+
+#custom-radio input:checked + .radio-btn {
+    border: 4px solid #00a6f3;
+}
+
+#custom-radio input:checked + .radio-btn .check-icon {
+    background-color: #00a6f3;
+}
+
+#custom-radio input:checked + .radio-btn .check-icon .icon::before,
+#custom-radio input:checked + .radio-btn .check-icon .icon::after {
+    transform: scale(1);
+}
+
+.radio-btn {
+    position: relative;
+    width: 150px;
+    height: 250px;
+    margin: 10px;
+    background-color: white;
+    border: 4px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.radio-btn .content {
+    padding: 20px;
+    height: 253px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.radio-btn .img-service {
+    width: 100px;
+    height: 100px;
+    margin: 20px 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.radio-btn .img-service img {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+.radio-btn h2{
+    color: #2d2d2d;
+    margin-bottom: 5px;
+    line-height: 1.2rem;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.radio-btn  .check-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #2d2d2d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.radio-btn  .check-icon .icon {
+    display: inline-block;
+    position: relative;
+    width: 18px;
+    height: 8px;
+    margin-top: -2px;
+    transform: rotate(-40deg);
+}
+
+.radio-btn  .check-icon .icon::before {
+    content: "";
+    width: 3px;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.231);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all 0.2s ease-in-out;
+}
+
+.radio-btn  .check-icon .icon::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.231);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all 0.2s ease-in-out;
+    transition-delay: 0.1s;
+}

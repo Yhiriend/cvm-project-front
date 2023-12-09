@@ -19,6 +19,7 @@ textarea {
   border-radius: 40px;
   border: 1px solid #c6c6c6;
   letter-spacing: 0.1em;
+  line-height: 1rem;
 }
 input:focus,
 textarea:focus {
@@ -60,7 +61,7 @@ label {
   position: relative;
   display: block;
   left: 25px;
-  width: 100%;
+  width: 95%;
 }
 .bar:before {
   content: "";

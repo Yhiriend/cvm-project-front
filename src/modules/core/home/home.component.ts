@@ -11,8 +11,6 @@ import { SharedModule } from '../../../shared/components/shared.module';
 import { Store } from '@ngrx/store';
 import { selectProducts } from '../../airconditioner/application/airconditioner.selectors';
 import { CardCreatorService } from '../helpers/card-creator.service';
-import { selectCartProductAdded } from '../../cart/application/cart.selectors';
-import { ToastService } from '../../../shared/components/toast/toast.service';
 import { DialogService } from '../../../shared/components/dialog.service';
 
 @Component({
@@ -48,6 +46,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   onServiceCardClick() {
-    console.log('wanna get service?');
+    this.dialogService.openServiceDialog();
   }
 }
