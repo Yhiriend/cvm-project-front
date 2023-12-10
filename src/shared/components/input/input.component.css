@@ -28,7 +28,7 @@ textarea:focus {
 input:focus ~ label, input:valid ~ label,
 textarea:focus ~ label,
 textarea:valid ~ label {
-  top: -10px;
+  top: -12px;
   left: 15px;
   font-size: 16px;
   color: #81caeb;
