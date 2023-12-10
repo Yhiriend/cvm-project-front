@@ -1,16 +1,17 @@
 <div
   class="relative w-full h-full bg-white flex justify-between items-center font-maxwellRegular tracking-wider text-customBlack"
 >
-  <div class="p-6 w-1/2 bg-gray-400 h-full flex flex-col justify-center items-center">
+  <div
+    class="p-6 w-1/2 bg-gray-400 h-full flex flex-col justify-center items-center"
+  >
     <div class="h-1/2">
-        <img [src]="imageUrl" width="300" alt="" />
+      <img [src]="imageUrl" width="300" alt="" />
     </div>
     <p class="leading-4 mt-2">
-      Descripción: Esta es una descripcion provicional hasta que se solucione lo demas en la
-      base de datos, guiño guiño
+      {{ data.product.description }}
     </p>
   </div>
-  <hr class="h-full bg-gray-300/80 w-1"/>
+  <hr class="h-full bg-gray-300/80 w-1" />
   <div class="h-full w-1/2 p-6 flex flex-col justify-center">
     <div class="w-full">
       <div class="flex w-full justify-between">
@@ -61,12 +62,16 @@
     </div>
     <div class="relative w-full">
       @if (msg) {
-      <p class="absolute top-0 text-left text-red-600 w-full font-maxwellRegular tracking-wider">{{msg}}</p>
+      <p
+        class="absolute top-0 text-left text-red-600 w-full font-maxwellRegular tracking-wider"
+      >
+        {{ msg }}
+      </p>
       }
     </div>
     <div class="w-fit h-[20px] mt-6">
       <button
-      (click)="onAddToCart()"
+        (click)="onAddToCart()"
         class="bg-customGreen rounded-[40px] py-2 px-4 text-white border-none focus:border-none outline-none hover:bg-green-600"
       >
         + Agregar al carrito
@@ -74,7 +79,11 @@
     </div>
   </div>
   <div class="absolute top-0 right-0">
-    <button (click)="onCloseModal()" class="w-12 h-12 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-1 pl-2 pb-2 text-gray-400 bg-gray-200 hover:bg-gray-300 hover:text-red-400">X</button>
-
+    <button
+      (click)="onCloseModal()"
+      class="w-12 h-12 rounded-tl-none rounded-tr-none rounded-br-none rounded-full font-mono pt-1 pr-1 pl-2 pb-2 text-gray-400 bg-gray-200 hover:bg-gray-300 hover:text-red-400"
+    >
+      X
+    </button>
   </div>
 </div>

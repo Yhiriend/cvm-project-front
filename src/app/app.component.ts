@@ -1,7 +1,6 @@
-import { Component, ChangeDetectorRef, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { LoadingService } from '../modules/core/domain/loading.service';
 import { ToastComponent } from "../shared/components/toast/toast.component";
 import { ToastService } from '../shared/components/toast/toast.service';
 
@@ -20,7 +19,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.toastService.toast$.subscribe((res: any) => {
-      console.log(res)
       this.message = res.message;
       this.showToast = true;
       setTimeout(() => {

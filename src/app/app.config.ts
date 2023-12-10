@@ -16,6 +16,8 @@ import { CartEffects } from '../modules/cart/application/cart.effects';
 import { appReducer } from '../modules/core/application/core.reducer';
 import { SaleEffects } from '../modules/sale/application/sale.effects';
 import { saleReducer } from '../modules/sale/application/sale.reducer';
+import { serviceRequestReducer } from '../modules/service-request/application/service-request.reducer';
+import { ServiceRequestEffects } from '../modules/service-request/application/service-request.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,9 +29,10 @@ export const appConfig: ApplicationConfig = {
       auth: userReducer,
       product: productReducer,
       cart: cartReducer,
-      sale: saleReducer
+      sale: saleReducer,
+      service: serviceRequestReducer
     }),
-    provideEffects(UserEffects, ProductEffects, CartEffects, SaleEffects),
+    provideEffects(UserEffects, ProductEffects, CartEffects, SaleEffects, ServiceRequestEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

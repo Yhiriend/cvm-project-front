@@ -11,6 +11,9 @@ import { SharedModule } from '../../../../../shared/components/shared.module';
 import { Store } from '@ngrx/store';
 import { register } from '../../../application/user.actions';
 import { User } from '../../../domain/models/user.model';
+import { selectAuthToken } from '../../../application/user.selectors';
+import { encryptData } from '../../../../../shared/utils/datahelper';
+import { environment } from '../../../../../environments/environment.development';
 
 @Component({
   selector: 'app-register-form',
@@ -41,6 +44,13 @@ export class RegisterFormComponent {
         password: this.registerForm.controls['password'].value!,
       };
       this.store.dispatch(register({ user: user }));
+      this.store.select(selectAuthToken).subscribe((token) => {
+        if(token){
+          const securaData = encryptData(token, environment.secretKey);
+          localStorage.setItem('token', JSON.stringify(securaData));
+          window.location.href = ''
+        }
+      })
     } else if (
       this.registerForm.get('email')?.hasError('required') ||
       this.registerForm.get('name')?.hasError('required') ||

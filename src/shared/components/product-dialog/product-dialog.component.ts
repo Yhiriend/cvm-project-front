@@ -85,7 +85,6 @@ export class ProductDialogComponent implements OnDestroy {
           this.store
             .select(selectCartProductAdded).pipe(skip(1), take(1))
             .subscribe((added) => {
-              console.log(added);
               if (added) {
                 this.store.dispatch(addProductToCartInStore({ product }));
                 this.toastService.show(

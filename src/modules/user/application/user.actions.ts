@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../domain/models/user.model';
-import { response } from 'express';
 
 export const login = createAction(
   '[AUTH] User Login',
