@@ -3,21 +3,20 @@ import { AirconditionerApiService } from '../infrastructure/airconditioner-api.s
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ProductActions from './airconditioner.actions';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { startLoading, stopLoading } from '../../core/application/core.actions';
-import { LoadingService } from '../../core/domain/loading.service';
+import { LoaderService } from '../../../shared/components/loader.service';
 
 @Injectable()
 export class ProductEffects {
   constructor(
     private actions$: Actions,
     private productService: AirconditionerApiService,
-    private loadingService: LoadingService
+    private loaderService: LoaderService
   ) {}
 
   newest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.getNewestProducts),
+      tap(() => this.loaderService.startLoading(true)),
       exhaustMap(() =>
         this.productService.getNewest().pipe(
           map((response) =>
@@ -28,12 +27,14 @@ export class ProductEffects {
           )
         )
       ),
+      tap(() => this.loaderService.startLoading(false))
     )
   );
 
   getProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.getProducts),
+      tap(() => this.loaderService.startLoading(true)),
       exhaustMap((action) =>
         this.productService.getProducts(action.keywords).pipe(
           map((response) => ProductActions.getProductsResponse({ response })),
@@ -42,6 +43,7 @@ export class ProductEffects {
           )
         )
       ),
+      tap(() => this.loaderService.startLoading(false)),
     )
   );
 }

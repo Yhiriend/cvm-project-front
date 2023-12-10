@@ -1,4 +1,9 @@
 @if (showToast) {
-  <app-toast [message]="message"></app-toast>
+<app-toast [message]="message"></app-toast>
+} @if (showLoader) {
+<div class="loader-container">
+  <div class="loader"></div>
+</div>
 }
+
 <router-outlet></router-outlet>
