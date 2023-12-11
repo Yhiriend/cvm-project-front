@@ -21,7 +21,7 @@ export const productReducer = createReducer(
   initialProductState,
   on(getNewestProductsResponse, (state, { response }) => ({
     ...state,
-    products: response.data ?? null,
+    products: response?.data ?? null,
     searching: false,
   })),
   on(getProductsResponse, (state, { response }) => ({
