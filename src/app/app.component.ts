@@ -15,12 +15,11 @@ import { LoaderService } from '../shared/components/loader.service';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'FRONTEND_CVM';
   toastService = inject(ToastService);
-  loaderService = inject(LoaderService);
   message: string = '';
   showToast = false;
   showLoader = false;
 
-  constructor(private cdr: ChangeDetectorRef){}
+  constructor(private cdr: ChangeDetectorRef, private loaderService: LoaderService){}
 
   ngOnInit() {}
 

@@ -23,8 +23,8 @@ export const userReducer = createReducer(
   })),
   on(UserActions.registerSuccess, (state, { response }) => ({
     ...state,
-    user: response.data,
-    token: response.token,
+    user: response?.data ?? null,
+    token: response?.token ?? null,
   })),
   on(UserActions.getUserSuccess, (state, {response}) => ({...state, user: response.data ?? null}))
 );
